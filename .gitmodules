@@ -1,0 +1,6 @@
+[submodule "sys_printf"]
+	path = sys_printf
+	url = https://github.com/brasserie/sys_printf.git
+[submodule "build"]
+	path = build
+	url = https://github.com/brasserie/build.git
