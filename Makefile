@@ -35,7 +35,7 @@ export OUTDIR
 # APPLICATION DEFINITIONS
 # List of modules and extra libraries needed to generate project targets
 # *******************************************************************************
-LIB_TERIS				:= src
+LIB_UNITRIS			:= components/unitris
 LIB_SYS_PRINTF			:= sys_printf
 
 export LIB_TERIS
@@ -47,9 +47,9 @@ export LIB_SYS_PRINTF
 # *******************************************************************************
 ifeq ($(MAKECMDGOALS), unitris_cli)
 
-APP_MODULES 	:= targets/cli $(LIB_TERIS) $(LIB_SYS_PRINTF)
+APP_MODULES 	:= projects/unitris_cli $(LIB_UNITRIS) $(LIB_SYS_PRINTF)
 APP_LIBPATH 	:= 
-APP_LIBS 		:= 
+APP_LIBS 	:= 
 
 endif
 
