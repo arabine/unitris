@@ -373,4 +373,8 @@ void UNI_Initialize(unitris_t *ctx)
     ctx->game_cnt = 0;
     ctx->pause = 0;
     ctx->seq = 0;
+    
+    UNI_NewTetromino(&ctx->p_curr);
+    UNI_NewTetromino(&ctx->p_next);
+    UNI_DisplayTetromino(ctx, true);
 }
