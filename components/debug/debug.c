@@ -1,6 +1,7 @@
 
 #include "debug.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void DBG_DumpGrid(const unitris_t *ctx)
 {
@@ -12,6 +13,19 @@ void DBG_DumpGrid(const unitris_t *ctx)
             printf("%d ", ctx->grid[i][j]);
         }
         printf("\n");
+    }
+}
+
+void DBG_BufferToFile(const char *buffer, uint32_t size, const char *filename)
+{
+    FILE *fout = NULL;
+
+    fout = fopen(filename,"wb");
+
+    if (fout != NULL)
+    {
+       (void) fwrite(buffer, sizeof(char), size, fout);
+       fclose(fout);
     }
 }
 

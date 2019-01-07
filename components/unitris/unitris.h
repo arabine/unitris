@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Bit field
 #define KEY_LEFT    1
 #define KEY_RIGHT   2
@@ -54,5 +58,9 @@ typedef struct
  */
 bool UNI_Tick(unitris_t *ctx, uint32_t key_evt, uint32_t key_held, uint32_t key_released);
 void UNI_Initialize(unitris_t *ctx);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // UNITRIS_H
