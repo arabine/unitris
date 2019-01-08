@@ -33,6 +33,8 @@ extern "C" {
 #define ID_PHI       0xDE
 #define ID_DEGRE     0x5F
 
+#define EGL_MAX_NUMBER_BUF 12 // the following should be enough for 32 bit int
+
 typedef enum {
    CHAR_ASCII,
    CHAR_BYTE
@@ -61,13 +63,21 @@ typedef struct
     uint32_t mem_size;
     uint16_t display_width;
     uint16_t display_height;
+
+    char scratch[EGL_MAX_NUMBER_BUF];
 } egl_t;
 
 void EGL_Initialize(egl_t *ctx, uint16_t width, uint16_t height, uint32_t *mem);
 void EGL_ClearScreen(egl_t *ctx);
 void EGL_SetPixel(egl_t *ctx, uint16_t x, uint16_t y, uint16_t value);
+uint16_t EGL_GetPixel(egl_t *ctx, uint16_t x, uint16_t y);
 void EGL_Sprite6(egl_t *ctx, const uint8_t *sprite, uint16_t x, uint16_t y, uint16_t h);
+void EGL_CopyImage(egl_t *ctx, const uint8_t *data, uint16_t x, uint16_t y, uint16_t cols, uint16_t lines );
 void EGL_PutString(egl_t *ctx, const char *s, uint16_t x, uint16_t y);
+void EGL_HLine(egl_t *ctx, uint16_t x, uint16_t y, uint16_t len, uint16_t value);
+void EGL_VLine(egl_t *ctx, uint16_t x, uint16_t y, uint16_t len, uint16_t value);
+void EGL_DrawRectangle(egl_t *ctx, uint16_t x, uint16_t y, uint16_t h, uint16_t l);
+uint16_t EGL_PutNumber(egl_t *ctx, int32_t num, uint16_t x, uint16_t y, char *conv_specs );
 
 #ifdef __cplusplus
 }

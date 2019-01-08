@@ -50,6 +50,8 @@ typedef struct
     
 } unitris_t;
 
+void UNI_Initialize(unitris_t *ctx);
+
 /**
  * @brief Main Unitris tick engine
  * 
@@ -57,7 +59,8 @@ typedef struct
  * 
  */
 bool UNI_Tick(unitris_t *ctx, uint32_t key_evt, uint32_t key_held, uint32_t key_released);
-void UNI_Initialize(unitris_t *ctx);
+
+const uint8_t *UNI_GetTetromino(tetromino_t *p);
 
 #ifdef __cplusplus
 }

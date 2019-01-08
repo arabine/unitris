@@ -77,11 +77,11 @@ int main(int argv, char *argc[])
 #endif
 
    if( tableau_16bits ) {
-      fprintf(fout,"const uint16 %s[] = {\n",strtok(argc[2],"."));
+      fprintf(fout,"static const uint16_t %s[] = {\n",strtok(argc[2],"."));
    } else if( tableau_32bits ) {
-      fprintf(fout,"const uint32 %s[] = {\n",strtok(argc[2],"."));
+      fprintf(fout,"static const uint32_t %s[] = {\n",strtok(argc[2],"."));
    } else {
-      fprintf(fout,"const uint8 %s[] = {\n",strtok(argc[2],"."));
+      fprintf(fout,"static const uint8_t %s[] = {\n",strtok(argc[2],"."));
    }
    fseek(fin,0x12,SEEK_SET);
    fread(&width,4,1,fin);

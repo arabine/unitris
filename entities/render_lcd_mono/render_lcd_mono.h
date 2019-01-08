@@ -27,12 +27,6 @@ typedef struct {
 
     int grille_mem[21][12]; // grille précédente (on ne dessine que les pixels différents
 
-    // Position de la grille Tetris dans l'écran virtuel
-    uint8_t x_grid;
-    uint8_t y_grid;
-    uint8_t grid_width;
-    uint8_t grid_height;
-
     char bitmap[BMP_FILE_SIZE(DISPLAY_WIDTH, DISPLAY_HEIGHT)];
 
 } render_lcd_mono_t;

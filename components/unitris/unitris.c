@@ -19,7 +19,7 @@ static const int levels[] = {
 
 // Chaque pièce tient dans une matrice de 4x4
 // On stocke toutes les rotations avec un offset
-static const int pieces[16*4*7] = {
+static const uint8_t all_tetrominos[16*4*7] = {
         
     // Carré
     0,0,0,0,
@@ -169,12 +169,17 @@ static const int pieces[16*4*7] = {
     0,0,0,0
 };
 
-    // Ajoute ou retire une pièce de la grid
+const uint8_t *UNI_GetTetromino(tetromino_t *p)
+{
+    return &all_tetrominos[p->type*16*4 + (16*p->rot)];
+}
+
+// Ajoute ou retire une pièce de la grid
 static void UNI_DisplayTetromino(unitris_t *ctx, bool add )
 {
     int x, y, val;
     tetromino_t *p = &ctx->p_curr;
-    const int *ptr = &pieces[p->type*16*4 + 16*p->rot];
+    const uint8_t *ptr = UNI_GetTetromino(p);
 
     // affichage de la pièce courante
     for( y=0; y<4; y++ ) {
@@ -200,8 +205,9 @@ static void UNI_DisplayTetromino(unitris_t *ctx, bool add )
 static bool UNI_CanMoveTetromino(unitris_t *ctx, int x, int y, int rot)
 {
     int i, j;
-    tetromino_t *p = &ctx->p_curr;
-    const int *ptr = &pieces[p->type*16*4 + 16*rot]; // pointeur sur la pièce + rotation
+    tetromino_t p = ctx->p_curr;
+    p.rot = rot; // try to apply this rotation
+    const uint8_t *ptr = UNI_GetTetromino(&p);
 
     // On efface la pièce de la grid
     UNI_DisplayTetromino(ctx, false);
@@ -209,7 +215,7 @@ static bool UNI_CanMoveTetromino(unitris_t *ctx, int x, int y, int rot)
     // tentative de placement aux nouvelles coordonnées
     for (i=0; i<4; i++) {
         for (j=0; j<4; j++) {
-            if ( (ctx->grid[p->y+i+y][p->x+j+x] + ptr[4*i+j]) == 2 ) {
+            if ( (ctx->grid[p.y + i + y][p.x + j + x] + ptr[(4*i) + j]) == 2 ) {
                 UNI_DisplayTetromino(ctx, true); // laisse la pièce où elle était
                 return false;
             }
