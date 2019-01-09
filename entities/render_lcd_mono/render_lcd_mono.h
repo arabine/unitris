@@ -32,7 +32,7 @@ typedef struct {
 } render_lcd_mono_t;
 
 void LCD_Initialize(render_lcd_mono_t *lcd);
-void LCD_Tick(render_lcd_mono_t *lcd);
+void LCD_Tick(render_lcd_mono_t *lcd, uint32_t key_event);
 void LCD_RenderBitmap(render_lcd_mono_t *lcd);
 
 #ifdef __cplusplus

@@ -10,13 +10,14 @@ Window {
     height: 480
     title: qsTr("Unitris - Qt version")
     color: "#00BFFF"
+
     property bool started: false
 
     Timer {
         id: gameTick
         interval: 50; running: false; repeat: true
         onTriggered: {
-            imageDisplay.source = unitris.tick();
+            imageDisplay.source = unitris.tick(0);
         }
     }
 
@@ -24,10 +25,44 @@ Window {
         anchors.fill: parent
         anchors.margins: 10
         spacing: 4
+        focus: true
+
+//        Keys.onPressed: {
+//             console.log("Pressed!");
+//        }
+
+        Keys.onPressed: {
+            console.log("Released!");
+            var keyEvent = 0;
+        /*
+#define KEY_LEFT    1
+#define KEY_RIGHT   2
+#define KEY_UP      4
+#define KEY_DOWN    8
+        */
+            if (event.key === Qt.Key_Left) {
+                keyEvent = 1;
+                event.accepted = true;
+            } else if (event.key === Qt.Key_Right) {
+                keyEvent = 2;
+                event.accepted = true;
+            } else if (event.key === Qt.Key_Up) {
+                keyEvent = 4;
+                event.accepted = true;
+            } else if (event.key === Qt.Key_Down) {
+                keyEvent = 8;
+                event.accepted = true;
+            }
+
+            if (keyEvent !== 0) {
+                imageDisplay.source = unitris.tick(keyEvent);
+            }
+        }
+
 
         Label {
             Layout.alignment: Qt.AlignHCenter
-            text: "Arrow keys to move the tetromino, up to rotate, space to drop"
+            text: "Use keyboard arrow keys to move the tetromino, up to rotate, down to drop"
         }
 
         Image {

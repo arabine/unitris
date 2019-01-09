@@ -14,7 +14,7 @@ public:
     UnitrisWrapper();
 
     Q_INVOKABLE void start();
-    Q_INVOKABLE QString tick();
+    Q_INVOKABLE QString tick(unsigned long key_event);
 
 private:
 

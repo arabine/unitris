@@ -23,9 +23,9 @@ void UnitrisWrapper::start()
     LCD_Initialize(&mCtx);
 }
 
-QString UnitrisWrapper::tick()
+QString UnitrisWrapper::tick(unsigned long key_event)
 {
-    LCD_Tick(&mCtx);
+    LCD_Tick(&mCtx, key_event);
     LCD_RenderBitmap(&mCtx);
     DBG_BufferToFile(mCtx.bitmap, sizeof(mCtx.bitmap), "tetris_screen.bmp");
 

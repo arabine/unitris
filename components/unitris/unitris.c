@@ -285,7 +285,7 @@ bool UNI_Tick(unitris_t *ctx, uint32_t key_evt, uint32_t key_held, uint32_t key_
         tab[1] = 0;
     }
 
-    if ( (key_held & KEY_RIGHT) || (tab[1]>=6) )
+    if ( (key_evt & KEY_RIGHT) || (tab[1]>=6) )
     {
         if( UNI_CanMoveTetromino(ctx, 1, 0, ctx->p_curr.rot) == true )
         {

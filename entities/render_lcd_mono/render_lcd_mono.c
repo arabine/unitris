@@ -169,9 +169,9 @@ static void LCD_MemorizeGrid(render_lcd_mono_t *lcd)
 }
 
 
-void LCD_Tick(render_lcd_mono_t *lcd)
+void LCD_Tick(render_lcd_mono_t *lcd, uint32_t key_event)
 {
-    UNI_Tick(&lcd->engine, 0, 0, 0);
+    UNI_Tick(&lcd->engine, key_event, 0, 0);
 
     LCD_UpdateGrid(lcd);
 
@@ -209,7 +209,13 @@ void LCD_Initialize(render_lcd_mono_t *lcd)
     EGL_PutString(&lcd->egl, "Lines", 9, 84);
     EGL_PutString(&lcd->egl, "Level", 58, 84);
 
-    LCD_MemorizeGrid(lcd);
+    for (uint16_t i=0; i<21; i++)
+    {
+        for (uint16_t j=0; j<12; j++)
+        {
+            lcd->grille_mem[i][j] = 0;
+        }
+    }
     LCD_DrawNextTetromino(lcd);
 }
 
