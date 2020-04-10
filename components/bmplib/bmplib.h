@@ -12,19 +12,19 @@ extern "C" {
 #pragma pack(push,1)
 
 #else
-#define PACKED __attribute__ ((__packed__))
+#define PACKED __attribute__ ((packed))
 
 #endif
 
-typedef struct {
+typedef struct PACKED {
    uint16_t type;                 /* Magic identifier            */
    uint32_t size;                       /* File size in bytes          */
    uint16_t reserved1;
    uint16_t reserved2;
    uint32_t offset;                     /* Offset to image data, bytes */
-} bmp_header_t PACKED;
+} bmp_header_t ;
 
-typedef struct {
+typedef struct PACKED {
    uint32_t size;               /* Header size in bytes      */
    
    /* Width and height of image */
@@ -42,7 +42,7 @@ typedef struct {
    uint32_t importantcolours;   /* Important colours         */
    uint32_t rgb;
    uint32_t rgb2;
-} bmp_infoheader_t PACKED;
+} bmp_infoheader_t ;
 
 #ifdef _MSC_VER
 #pragma pack(pop)
